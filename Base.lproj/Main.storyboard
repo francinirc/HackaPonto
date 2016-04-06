@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pvk-Kh-yXb">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Configurações-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="Configurações" id="BYZ-38-t0r" customClass="ViewController" customModule="HackaPonto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Configurações" id="Dh5-TJ-1K0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="310.5" y="903.75"/>
+        </scene>
+        <!--Histórico-->
+        <scene sceneID="Uh1-4L-yLO">
+            <objects>
+                <viewController title="Histórico" id="bAq-Y1-O9J" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1zK-WB-OZp"/>
+                        <viewControllerLayoutGuide type="bottom" id="gXI-sP-GEt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="teO-Yl-bhv">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Histórico" id="1R8-Ya-PT4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7r-08-JMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1230" y="388.5"/>
+        </scene>
+        <!--Ponto-->
+        <scene sceneID="c6k-tG-jwr">
+            <objects>
+                <viewController title="Ponto" id="WRf-zM-gEI" customClass="RecordViewController" customModule="HackaPonto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sSS-KB-9ly"/>
+                        <viewControllerLayoutGuide type="bottom" id="bLu-S0-Hvi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PM7-to-BCq">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1d-wS-Dxe" customClass="RoundButton" customModule="HackaPonto" customModuleProvider="target">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="GE2-3D-AJm"/>
+                                    <constraint firstAttribute="height" constant="200" id="PJK-SV-mRs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="CHECK-IN"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="GE2-3D-AJm"/>
+                                        <exclude reference="PJK-SV-mRs"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="GE2-3D-AJm"/>
+                                        <include reference="PJK-SV-mRs"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="createRecord:" destination="WRf-zM-gEI" eventType="touchUpInside" id="LNb-Ug-kOV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="E1d-wS-Dxe" firstAttribute="centerY" secondItem="PM7-to-BCq" secondAttribute="centerY" id="YaI-Mc-d3z"/>
+                            <constraint firstItem="E1d-wS-Dxe" firstAttribute="centerX" secondItem="PM7-to-BCq" secondAttribute="centerX" id="wz5-q6-gaZ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="E1d-wS-Dxe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="YaI-Mc-d3z"/>
+                                <exclude reference="wz5-q6-gaZ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="E1d-wS-Dxe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="YaI-Mc-d3z"/>
+                                <include reference="wz5-q6-gaZ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Ponto" id="iy5-UN-Guj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tAH-jI-Cfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1230" y="-257.25"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="XBC-YL-5hc">
+            <objects>
+                <tabBarController id="Pvk-Kh-yXb" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Gwe-Hb-WK7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="WRf-zM-gEI" kind="relationship" relationship="viewControllers" id="d4e-Kt-ZAi"/>
+                        <segue destination="bAq-Y1-O9J" kind="relationship" relationship="viewControllers" id="sUR-z0-GoW"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="8zK-tw-ZUb"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Vh-Ls-ihx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="300" y="66"/>
+        </scene>
+    </scenes>
+</document>

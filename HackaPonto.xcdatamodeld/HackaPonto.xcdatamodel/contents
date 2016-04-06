@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="DailyHours" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="justification" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hoursHistory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HoursHistory" inverseName="dailyHours" inverseEntity="HoursHistory" syncable="YES"/>
+    </entity>
+    <entity name="HoursHistory" syncable="YES">
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="dailyHours" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyHours" inverseName="hoursHistory" inverseEntity="DailyHours" syncable="YES"/>
+    </entity>
+    <entity name="Settings" syncable="YES">
+        <attribute name="showReminder" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="HoursHistory" positionX="-144" positionY="-135" width="128" height="73"/>
+        <element name="Settings" positionX="-0" positionY="-9" width="128" height="60"/>
+        <element name="DailyHours" positionX="88" positionY="-162" width="128" height="88"/>
+    </elements>
+</model>
