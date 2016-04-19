@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
-    <entity name="HoursHistory" representedClassName=".HoursHistory" syncable="YES">
+    <entity name="DailyHours" representedClassName=".DailyHours" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="justification" optional="YES" attributeType="String" maxValueString="300" syncable="YES"/>
+        <attribute name="justification" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hoursHistory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HoursHistory" inverseName="dailyHours" inverseEntity="HoursHistory" syncable="YES"/>
+    </entity>
+    <entity name="HoursHistory" representedClassName=".HoursHistory" syncable="YES">
         <attribute name="time" optional="YES" attributeType="Date" defaultDateTimeInterval="481607640" syncable="YES"/>
+        <relationship name="dailyHours" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyHours" inverseName="hoursHistory" inverseEntity="DailyHours" syncable="YES"/>
     </entity>
     <entity name="Settings" representedClassName=".Settings" syncable="YES">
         <attribute name="showReminder" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
-    <entity name="University" syncable="YES">
+    <entity name="University" representedClassName=".University" syncable="YES">
         <attribute name="cidade" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uf" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="workSchedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkSchedule" inverseName="university" inverseEntity="WorkSchedule" syncable="YES"/>
     </entity>
-    <entity name="WorkSchedule" syncable="YES">
+    <entity name="WorkSchedule" representedClassName=".WorkSchedule" syncable="YES">
         <attribute name="firstEntry" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="firstOut" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="secondEntry" optional="YES" attributeType="Date" syncable="YES"/>
@@ -22,9 +26,10 @@
         <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="University" inverseName="workSchedule" inverseEntity="University" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HoursHistory" positionX="-144" positionY="-135" width="128" height="88"/>
-        <element name="Settings" positionX="214" positionY="-27" width="128" height="58"/>
-        <element name="University" positionX="-2" positionY="-27" width="128" height="105"/>
-        <element name="WorkSchedule" positionX="-225" positionY="-9" width="128" height="118"/>
+        <element name="DailyHours" positionX="88" positionY="-162" width="128" height="88"/>
+        <element name="HoursHistory" positionX="-144" positionY="-135" width="128" height="73"/>
+        <element name="Settings" positionX="-0" positionY="-9" width="128" height="58"/>
+        <element name="University" positionX="-36" positionY="-18" width="128" height="105"/>
+        <element name="WorkSchedule" positionX="-225" positionY="-9" width="128" height="120"/>
     </elements>
 </model>

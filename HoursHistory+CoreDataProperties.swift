@@ -2,7 +2,7 @@
 //  HoursHistory+CoreDataProperties.swift
 //  HackaPonto
 //
-//  Created by Francini Roberta de Carvalho on 4/5/16.
+//  Created by Francini Roberta de Carvalho on 4/18/16.
 //  Copyright © 2016 Francini Carvalho. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,6 +15,7 @@ import CoreData
 extension HoursHistory {
 
     @NSManaged var time: NSDate?
-    @NSManaged var dailyHours: DailyHours?
+    @NSManaged var date: NSDate?
+    @NSManaged var justification: String?
 
 }

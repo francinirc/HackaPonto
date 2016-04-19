@@ -43,10 +43,9 @@ class HoursHistoryDAO {
         return deleted
     }
     
+    // search all registers
     static func fetchHours() -> [HoursHistory] {
         let request = NSFetchRequest(entityName: "HoursHistory")
-        //request.sortDescriptors = [NSSortDescriptor(key: "date", ascending:true)]
-        
         var results = [HoursHistory]()
         
         do {
@@ -54,10 +53,32 @@ class HoursHistoryDAO {
             print(results.count)
             
         } catch let error as NSError {
-            print("Erro ao buscar :", error)
+            print("Erro ao buscar:", error)
         }
         
         return results
     }
-
+    
+    // search all registers
+    static func fetchFullHoursHistory() -> NSFetchedResultsController {
+        let request = NSFetchRequest(entityName: "HoursHistory")
+        //request.propertiesToFetch = ["time"]
+        //request.propertiesToGroupBy = ["time"]
+        //request.resultType =  .DictionaryResultType
+        
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [sort]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: DatabaseManager.sharedInstance.managedObjectContext, sectionNameKeyPath: "date", cacheName: nil)
+        
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+        
+        return fetchedResultsController
+    }
+    
 }

@@ -7,25 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
-class HistoryTableViewController: UITableViewController {
+class HistoryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var hoursHistoryList = [HoursHistory]()
+    var fetchedResultsController = NSFetchedResultsController()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        fetchedResultsController.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
-        hoursHistoryList = HoursHistoryDAO.fetchHours()
+        //hoursHistoryList = HoursHistoryDAO.fetchHours()
+        fetchedResultsController = HoursHistoryDAO.fetchFullHoursHistory()
         tableView.reloadData()
     }
 
@@ -37,26 +35,31 @@ class HistoryTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        //return self.hoursHistoryList.count
+        print(fetchedResultsController.sections!.count)
+        return fetchedResultsController.sections!.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.hoursHistoryList.count
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        print(sectionInfo.numberOfObjects)
+        
+        return sectionInfo.numberOfObjects
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("cellHours", forIndexPath: indexPath)
 
         let dateFormatter: NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yy - HH:mm"
+        dateFormatter.dateFormat = "HH:mm"
         
-        let formattedTime = dateFormatter.stringFromDate(self.hoursHistoryList[indexPath.row].time!)
+        let itemHistory = fetchedResultsController.objectAtIndexPath(indexPath) as! HoursHistory
+        let formattedTime = dateFormatter.stringFromDate(itemHistory.time!)
         
         cell.textLabel?.text = formattedTime
-
+        cell.detailTextLabel?.text = itemHistory.justification
+        
         return cell
     }
     
@@ -68,7 +71,6 @@ class HistoryTableViewController: UITableViewController {
         return true
     }
     
-
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -85,6 +87,49 @@ class HistoryTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+    
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.fetchedResultsController.sections![section].name
+    }
+    
+    
+    @IBAction func addRegister(sender: AnyObject) {
+        
+    }
+    
+    
+    private func showAlertMessage(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addTextFieldWithConfigurationHandler(nil)
+        
+        let saveAction = UIAlertAction(title: "Salvar", style: UIAlertActionStyle.Default, handler: {
+            action in self.save()
+            //let newHour = alert.textFields![0]
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.Default, handler: nil)
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    private func save() {
+        
+//        let hourToInsert = HoursHistory()
+//        hourToInsert.time = self.currentDate
+//        
+//        if (HoursHistoryDAO.insert(hourToInsert)) {
+//            print("Salvou \\o/")
+//        } else {
+//            print("deu ruim")
+//        }
+        
+    }
+
     
 
     /*

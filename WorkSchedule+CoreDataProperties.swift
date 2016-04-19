@@ -1,5 +1,5 @@
 //
-//  Settings+CoreDataProperties.swift
+//  WorkSchedule+CoreDataProperties.swift
 //  HackaPonto
 //
 //  Created by Francini Roberta de Carvalho on 4/7/16.
@@ -12,8 +12,12 @@
 import Foundation
 import CoreData
 
-extension Settings {
+extension WorkSchedule {
 
-    @NSManaged var showReminder: NSNumber?
+    @NSManaged var firstEntry: NSDate?
+    @NSManaged var firstOut: NSDate?
+    @NSManaged var secondEntry: NSDate?
+    @NSManaged var secondOut: NSDate?
+    @NSManaged var university: University?
 
 }
