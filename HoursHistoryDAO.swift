@@ -27,6 +27,21 @@ class HoursHistoryDAO {
         return inserted
     }
     
+    // insert new object
+    static func update() -> Bool {
+        var updated = false
+        
+        do {
+            try DatabaseManager.sharedInstance.managedObjectContext.save()
+            updated = true
+            
+        } catch let error as NSError {
+            print("Erro ao alterar: ", error)
+        }
+        
+        return updated
+    }
+    
     // delete object
     static func delete(hoursHistory: HoursHistory) -> Bool {
         DatabaseManager.sharedInstance.managedObjectContext.deleteObject(hoursHistory)

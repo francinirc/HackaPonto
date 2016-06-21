@@ -14,6 +14,8 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     var hoursHistoryList = [HoursHistory]()
     var fetchedResultsController = NSFetchedResultsController()
     
+    //var array: [String] = ["um", "dois", "tres", "quatro"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +24,8 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     }
     
     override func viewWillAppear(animated: Bool) {
-        //hoursHistoryList = HoursHistoryDAO.fetchHours()
         fetchedResultsController = HoursHistoryDAO.fetchFullHoursHistory()
+        
         tableView.reloadData()
     }
 
@@ -35,8 +37,6 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        //return self.hoursHistoryList.count
-        print(fetchedResultsController.sections!.count)
         return fetchedResultsController.sections!.count
     }
 
@@ -59,6 +59,7 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
         
         cell.textLabel?.text = formattedTime
         cell.detailTextLabel?.text = itemHistory.justification
+
         
         return cell
     }
@@ -90,6 +91,13 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionName = self.fetchedResultsController.sections![section].name
+        let dateFormatter: NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MMM"
+        print(dateFormatter.dateFromString(sectionName))
+        
+        
+        
         return self.fetchedResultsController.sections![section].name
     }
     
@@ -147,14 +155,18 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "editRegister" {
+            if let editRegister = segue.destinationViewController as? EditRegisterViewController {
+                editRegister.hoursHistory = self.fetchedResultsController.objectAtIndexPath(tableView.indexPathForSelectedRow!) as? HoursHistory
+            }
+        }
+        
     }
-    */
+    
 
 }
