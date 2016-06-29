@@ -14,8 +14,8 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     var hoursHistoryList = [HoursHistory]()
     var fetchedResultsController = NSFetchedResultsController()
     
-    //var array: [String] = ["um", "dois", "tres", "quatro"]
     
+    let meses = ["Junho", "Maio", "Abril", "Março"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +24,9 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     }
     
     override func viewWillAppear(animated: Bool) {
-        fetchedResultsController = HoursHistoryDAO.fetchFullHoursHistory()
-        
-        tableView.reloadData()
+//        fetchedResultsController = HoursHistoryDAO.fetchFullHoursHistory()
+//        
+//        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,30 +37,38 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return fetchedResultsController.sections!.count
+        //return fetchedResultsController.sections!.count
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        print(sectionInfo.numberOfObjects)
+//        let sectionInfo = self.fetchedResultsController.sections![section]
+//        print(sectionInfo.numberOfObjects)
+//        
+//        return sectionInfo.numberOfObjects
         
-        return sectionInfo.numberOfObjects
+        return self.meses.count
+    
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("cellHours", forIndexPath: indexPath)
+//
+//        let dateFormatter: NSDateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "HH:mm"
+//        
+//        let itemHistory = fetchedResultsController.objectAtIndexPath(indexPath) as! HoursHistory
+//        let formattedTime = dateFormatter.stringFromDate(itemHistory.time!)
+//        
+//        cell.textLabel?.text = formattedTime
+//        cell.detailTextLabel?.text = itemHistory.justification
+//
+//        
+//        return cell
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("cellHours", forIndexPath: indexPath)
-
-        let dateFormatter: NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        
-        let itemHistory = fetchedResultsController.objectAtIndexPath(indexPath) as! HoursHistory
-        let formattedTime = dateFormatter.stringFromDate(itemHistory.time!)
-        
-        cell.textLabel?.text = formattedTime
-        cell.detailTextLabel?.text = itemHistory.justification
-
-        
+        cell.textLabel?.text = self.meses[indexPath.row]
         return cell
     }
     
@@ -78,12 +86,12 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
         if editingStyle == .Delete {
             // Delete the row from the data source
             
-            if HoursHistoryDAO.delete(self.hoursHistoryList[indexPath.row]) {
-                self.hoursHistoryList.removeAtIndex(indexPath.row)
-            
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                //tableView.reloadData()
-            }
+//            if HoursHistoryDAO.delete(self.hoursHistoryList[indexPath.row]) {
+//                self.hoursHistoryList.removeAtIndex(indexPath.row)
+//            
+//                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//                
+//            }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -91,14 +99,14 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionName = self.fetchedResultsController.sections![section].name
-        let dateFormatter: NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd-MMM"
-        print(dateFormatter.dateFromString(sectionName))
-        
-        
-        
-        return self.fetchedResultsController.sections![section].name
+//        let sectionName = self.fetchedResultsController.sections![section].name
+//        let dateFormatter: NSDateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "dd-MMM"
+//        print(dateFormatter.dateFromString(sectionName))
+//        
+//        
+//        return self.fetchedResultsController.sections![section].name
+        return "2016"
     }
     
     
@@ -127,15 +135,7 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     
     private func save() {
         
-//        let hourToInsert = HoursHistory()
-//        hourToInsert.time = self.currentDate
-//        
-//        if (HoursHistoryDAO.insert(hourToInsert)) {
-//            print("Salvou \\o/")
-//        } else {
-//            print("deu ruim")
-//        }
-        
+
     }
 
     
@@ -161,9 +161,9 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editRegister" {
-            if let editRegister = segue.destinationViewController as? EditRegisterViewController {
-                editRegister.hoursHistory = self.fetchedResultsController.objectAtIndexPath(tableView.indexPathForSelectedRow!) as? HoursHistory
-            }
+//            if let editRegister = segue.destinationViewController as? EditRegisterViewController {
+//                editRegister.hoursHistory = self.fetchedResultsController.objectAtIndexPath(tableView.indexPathForSelectedRow!) as? HoursHistory
+//            }
         }
         
     }
